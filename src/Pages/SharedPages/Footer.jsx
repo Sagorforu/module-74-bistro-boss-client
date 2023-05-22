@@ -3,8 +3,8 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="grid grid-cols-2 text-neutral-content">
-        <div className="bg-[#1F2937] h-[300px] py-16 ps-36 w-full text-white text-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 text-neutral-content">
+        <div className="bg-[#1F2937] h-[300px] py-16 lg:ps-36 w-full text-white text-center">
           <h1 className="font-medium text-xl mb-4">CONTACT US</h1>
           <p>
           123 ABS Street, Uni 21, Bangladesh
@@ -13,7 +13,7 @@ const Footer = () => {
             <p>Mon - Fri: 08:00 - 22:00</p>
             <p>Sat - Sun: 10:00 - 23:00</p>
         </div>
-        <div className="bg-[#111827] h-[300px] py-20 pe-40 w-full">
+        <div className="bg-[#111827] h-[300px] py-20 lg:pe-40 w-full">
           <div className="text-white text-center">
             <h2 className="mb-4 font-medium text-xl">Follow US</h2>
             <h4 className="mb-4">Join us on social media</h4>
