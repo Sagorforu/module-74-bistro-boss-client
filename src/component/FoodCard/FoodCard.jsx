@@ -14,7 +14,7 @@ const FoodCard = ({ item }) => {
         <h2 className="text-center text-xl font-medium">{name}</h2>
         <p>{recipe}</p>
         <div className="card-actions justify-center">
-          <button className="btn btn-outline border-0 border-b-4">Add to Cart</button>
+          <button className="btn btn-outline bg-[#E8E8E8] border-[#BB8506] hover:text-[#BB8506] text-[#BB8506] hover:bg-black border-0 border-b-4">Add to Cart</button>
         </div>
       </div>
     </div>
