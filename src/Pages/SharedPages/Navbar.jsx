@@ -1,24 +1,28 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { FaShoppingCart } from 'react-icons/fa';
+
 
 const Navbar = () => {
-  const {user, logOut} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logOut()
-    .then(()=> {
-      Swal.fire({
-        position: 'top-center',
-        icon: 'success',
-        title: 'Log out Successful',
-        showConfirmButton: false,
-        timer: 1500
+      .then(() => {
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Log out Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
       })
-    })
-    .then(error => console.log(error))
-  }
+      .then((error) => console.log(error));
+  };
 
   const navbarOptions = (
     <>
@@ -27,12 +31,24 @@ const Navbar = () => {
         <Link to="/menu">Our Menu</Link>
         <Link to="/order/salad">Order</Link>
         <Link to="/secret">Secret</Link>
-        
-        {
-          user ? <><button onClick={handleLogout} className="btn btn-ghost">Log out</button></> : <><Link to="/login">Login</Link></>
-        }
+        <Link>
+          <button className="btn gap-2">
+            <FaShoppingCart className="text-2xl font-bold"></FaShoppingCart>
+            <div className="badge badge-secondary">+0</div>
+          </button>
+        </Link>
+        {user ? (
+          <>
+            <button onClick={handleLogout} className="btn btn-ghost">
+              Log out
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+          </>
+        )}
       </li>
-      
     </>
   );
   return (
