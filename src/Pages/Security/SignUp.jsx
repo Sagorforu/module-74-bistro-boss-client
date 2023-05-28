@@ -1,12 +1,14 @@
 import { useForm } from "react-hook-form";
 import signUpImg from "../../assets/others/authentication2.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -19,7 +21,16 @@ const SignUp = () => {
     .then(result => {
       const newUser = result.user;
       console.log(newUser)
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'User sign up Successful',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      navigate('/')
     })
+    .catch(error => console.log(error))
   };
 
   return (
