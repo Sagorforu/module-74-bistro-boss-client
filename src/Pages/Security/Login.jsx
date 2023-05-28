@@ -1,7 +1,7 @@
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import loginImg from "../../assets/others/authentication2.png"
 import { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2'
@@ -11,6 +11,9 @@ const Login = () => {
     const [disabled, setDisabled] = useState(true);
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location?.state?.from.pathname || '/';
 
     useEffect(()=>{
         loadCaptchaEnginge(6);
@@ -33,7 +36,7 @@ const Login = () => {
               showConfirmButton: false,
               timer: 1500
             })
-            navigate('/');
+            navigate(from, {replace:true})
         })
         .catch(error => console.log(error))
     }
