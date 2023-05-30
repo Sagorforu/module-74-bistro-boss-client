@@ -10,6 +10,11 @@ import Secret from "../Pages/SharedPages/Secret";
 import Dashboard from "../Layout/Dashboard";
 import MyCart from "../DashBoardPages/DashBoard/MyCart";
 import Payment from "../DashBoardPages/DashBoard/Payment";
+import AllUsers from "../DashBoardPages/AllUsers/AllUsers";
+import AdminHome from "../DashBoardPages/AdminHome/AdminHome";
+import AddItems from "../DashBoardPages/AddItems/AddItems";
+import ManageItems from "../DashBoardPages/ManageItems/ManageItems";
+import ManageBookings from "../DashBoardPages/ManageBookings/ManageBookings";
 
 export const router = createBrowserRouter([
   {
@@ -44,7 +49,7 @@ export const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: 'myCart',
@@ -53,6 +58,26 @@ export const router = createBrowserRouter([
       {
         path: 'payment',
         element: <Payment></Payment>
+      },
+      {
+        path: 'allUsers',
+        element: <AllUsers></AllUsers>
+      },
+      {
+        path: 'adminHome',
+        element: <AdminHome></AdminHome>
+      },
+      {
+        path: 'addItems',
+        element: <AddItems></AddItems>
+      },
+      {
+        path: 'manageItems',
+        element: <ManageItems></ManageItems>
+      },
+      {
+        path: 'manageBookings',
+        element: <ManageBookings></ManageBookings>
       }
     ]
   }

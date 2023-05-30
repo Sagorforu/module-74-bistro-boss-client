@@ -1,9 +1,13 @@
 import {
+  FaBook,
   FaCalculator,
   FaCalendarAlt,
   FaHome,
+  FaListUl,
   FaShoppingCart,
   FaStar,
+  FaUsers,
+  FaUtensils,
   FaWallet,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
@@ -14,6 +18,8 @@ import useCart from "../Hooks/useCart";
 const Dashboard = () => {
   const [, cart] = useCart();
 
+  // TODO: load data from the server to have dynamic isAdmin based on data
+  const isAdmin = true;
 
   return (
     <div className="drawer drawer-mobile ">
@@ -39,54 +45,104 @@ const Dashboard = () => {
               Restaurant
             </h3>
           </div>
-          <li>
-            <NavLink
-              to="/dashboard/userHome"
-              className="text-xl text-center uppercase font-semibold"
-            >
-              <FaHome></FaHome> User Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/dashboard/reservation"
-              className="text-xl text-center uppercase font-semibold"
-            >
-              <FaCalendarAlt></FaCalendarAlt> Reservation
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/dashboard/payment"
-              className="text-xl text-center uppercase font-semibold"
-            >
-              <FaWallet></FaWallet> Payment History
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/dashboard/myCart"
-              className="text-xl text-center uppercase font-semibold"
-            >
-              <FaShoppingCart></FaShoppingCart> My Cart <span className="badge badge-secondary">+{cart?.length || 0}</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/dashboard/addReview"
-              className="text-xl text-center uppercase font-semibold"
-            >
-              <FaStar></FaStar> Add Review
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/dashboard/myBooking"
-              className="text-xl text-center uppercase font-semibold"
-            >
-              <FaCalculator></FaCalculator> My Booking
-            </NavLink>
-          </li>
+          {isAdmin ? (
+            <>
+              <li>
+                <NavLink
+                  to="/dashboard/adminHome"
+                  className="text-xl text-center uppercase font-semibold"
+                >
+                  <FaHome></FaHome> Admin Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/addItems"
+                  className="text-xl text-center uppercase font-semibold"
+                >
+                  <FaUtensils></FaUtensils> Add items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/manageItems"
+                  className="text-xl text-center uppercase font-semibold"
+                >
+                  <FaListUl></FaListUl> Manage Items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/manageBookings"
+                  className="text-xl text-center uppercase font-semibold"
+                >
+                  <FaBook></FaBook> Manage bookings
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/allUsers"
+                  className="text-xl text-center uppercase font-semibold"
+                >
+                  <FaUsers></FaUsers> All users
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink
+                  to="/dashboard/userHome"
+                  className="text-xl text-center uppercase font-semibold"
+                >
+                  <FaHome></FaHome> User Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/reservation"
+                  className="text-xl text-center uppercase font-semibold"
+                >
+                  <FaCalendarAlt></FaCalendarAlt> Reservation
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/payment"
+                  className="text-xl text-center uppercase font-semibold"
+                >
+                  <FaWallet></FaWallet> Payment History
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/myCart"
+                  className="text-xl text-center uppercase font-semibold"
+                >
+                  <FaShoppingCart></FaShoppingCart> My Cart{" "}
+                  <span className="badge badge-secondary">
+                    +{cart?.length || 0}
+                  </span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/addReview"
+                  className="text-xl text-center uppercase font-semibold"
+                >
+                  <FaStar></FaStar> Add Review
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/myBooking"
+                  className="text-xl text-center uppercase font-semibold"
+                >
+                  <FaCalculator></FaCalculator> My Booking
+                </NavLink>
+              </li>
+            </>
+          )}
           <div className="divider"></div>
           <li>
             <NavLink

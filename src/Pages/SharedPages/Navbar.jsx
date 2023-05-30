@@ -34,9 +34,9 @@ const Navbar = () => {
         <Link to="/order/salad">Order</Link>
         <Link to="/secret">Secret</Link>
         <Link to='/dashboard/myCart'>
-          <button className="btn gap-2">
+          <button className=" gap-2">
             <FaShoppingCart className="text-2xl font-bold"></FaShoppingCart>
-            <div className="badge badge-secondary">+{cart?.length || 0}</div>
+            <div className="absolute bottom-9 badge text-white font-bold " >+{cart?.length || 0}</div>
           </button>
         </Link>
         {user ? (
@@ -55,7 +55,7 @@ const Navbar = () => {
   );
   return (
     <>
-      <div className="navbar fixed z-10 max-w-screen-2xl bg-opacity-30 bg-black text-white">
+      <div className="navbar fixed z-10 max-w-screen-2xl bg-opacity-30 bg-black text-white py-5">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

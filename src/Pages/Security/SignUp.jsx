@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "./SocialLogin";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -17,15 +18,24 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     createUser(data.email, data.password)
       .then((result) => {
         const newUser = result.user;
         console.log(newUser);
         updateUserProfile(data.name, data.PhotoURL)
           .then(() => {
-            console.log("profile updated");
-            reset();
+            const saveUser = { name: data.name, email: data.email, photo: data.PhotoURL }
+            fetch('http://localhost:5000/users', {
+              method: "POST",
+              headers: {
+                "content-type" : "application/json"
+              },
+              body: JSON.stringify(saveUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+              if (data.insertedId) {
+                reset();
             Swal.fire({
               position: "top-center",
               icon: "success",
@@ -34,6 +44,9 @@ const SignUp = () => {
               timer: 1500,
             });
             navigate("/");
+              }
+            })
+            
           })
           .catch((error) => console.log(error));
       })
@@ -137,6 +150,7 @@ const SignUp = () => {
                   Go to log in
                 </Link>
               </p>
+              <SocialLogin></SocialLogin>
             </div>
           </form>
         </div>
