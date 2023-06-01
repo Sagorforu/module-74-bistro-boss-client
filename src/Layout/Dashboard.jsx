@@ -59,10 +59,10 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink
-                  to="/dashboard/addItems"
+                  to="/dashboard/addItem"
                   className="text-xl text-center uppercase font-semibold"
                 >
-                  <FaUtensils></FaUtensils> Add items
+                  <FaUtensils></FaUtensils> Add an item
                 </NavLink>
               </li>
               <li>

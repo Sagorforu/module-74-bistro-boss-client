@@ -15,6 +15,7 @@ import AdminHome from "../DashBoardPages/AdminHome/AdminHome";
 import AddItems from "../DashBoardPages/AddItems/AddItems";
 import ManageItems from "../DashBoardPages/ManageItems/ManageItems";
 import ManageBookings from "../DashBoardPages/ManageBookings/ManageBookings";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -61,23 +62,23 @@ export const router = createBrowserRouter([
       },
       {
         path: 'allUsers',
-        element: <AllUsers></AllUsers>
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
       {
         path: 'adminHome',
-        element: <AdminHome></AdminHome>
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
       },
       {
-        path: 'addItems',
-        element: <AddItems></AddItems>
+        path: 'addItem',
+        element: <AdminRoute><AddItems></AddItems></AdminRoute>
       },
       {
         path: 'manageItems',
-        element: <ManageItems></ManageItems>
+        element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
       },
       {
         path: 'manageBookings',
-        element: <ManageBookings></ManageBookings>
+        element: <AdminRoute><ManageBookings></ManageBookings></AdminRoute>
       }
     ]
   }
