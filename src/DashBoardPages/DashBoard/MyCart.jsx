@@ -3,6 +3,7 @@ import SectionTitle from "../../component/SectionTitle/SectionTitle";
 import useCart from "../../Hooks/useCart";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [refetch, cart] = useCart();
@@ -45,9 +46,9 @@ const MyCart = () => {
         <div className="flex justify-evenly py-10  text-3xl font-bold uppercase">
           <h2>Total Orders: {cart.length}</h2>
           <h2>Total Price: ${total}</h2>
-          <button className="text-xl rounded uppercase bg-[#D1A054] text-white btn-sm">
+          <Link to="/dashboard/paymentStripe"><button className="text-xl rounded uppercase bg-[#D1A054] text-white btn-sm">
             Pay
-          </button>
+          </button></Link>
         </div>
         {/* Table content */}
         <div className="overflow-x-auto flex justify-between w-full text-normal font-normal">

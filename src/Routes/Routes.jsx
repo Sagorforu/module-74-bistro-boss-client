@@ -16,6 +16,7 @@ import AddItems from "../DashBoardPages/AddItems/AddItems";
 import ManageItems from "../DashBoardPages/ManageItems/ManageItems";
 import ManageBookings from "../DashBoardPages/ManageBookings/ManageBookings";
 import AdminRoute from "./AdminRoute";
+import PaymentStripe from "../DashBoardPages/PaymentStripe/PaymentStripe";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,11 @@ export const router = createBrowserRouter([
         path: 'payment',
         element: <Payment></Payment>
       },
+      {
+        path: 'paymentStripe',
+        element: <PaymentStripe></PaymentStripe>
+      },
+      // admin routes
       {
         path: 'allUsers',
         element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
