@@ -2,14 +2,15 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../Hooks/useCart";
-
+import useAdmin from "../../Hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const [, cart] = useCart();
+  const [isAdmin] = useAdmin();
 
   const handleLogout = () => {
     logOut()
@@ -32,11 +33,23 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/menu">Our Menu</Link>
         <Link to="/order/salad">Order</Link>
-        <Link to="/secret">Secret</Link>
-        <Link to='/dashboard/myCart'>
+        {user ? (
+          <>
+            {isAdmin ? (
+              <Link to="/dashboard/adminHome">Dashboard</Link>
+            ) : (
+              <Link to="/dashboard/userHome">Dashboard</Link>
+            )}
+          </>
+        ) : (
+          ""
+        )}
+        <Link to="/dashboard/myCart">
           <button className=" gap-2">
             <FaShoppingCart className="text-2xl font-bold"></FaShoppingCart>
-            <div className="absolute bottom-9 badge text-white font-bold " >+{cart?.length || 0}</div>
+            <div className="absolute bottom-9 badge text-white font-bold ">
+              +{cart?.length || 0}
+            </div>
           </button>
         </Link>
         {user ? (
